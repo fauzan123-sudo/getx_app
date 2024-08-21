@@ -1,4 +1,3 @@
-
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -19,7 +18,7 @@ class HomeService {
       : _dio = Dio(BaseOptions(connectTimeout: const Duration(seconds: 20))) {
     _dio.interceptors.addAll([
       AuthInterceptor(),
-      // AwesomeDioInterceptor(),
+      AwesomeDioInterceptor(),
     ]);
   }
 
@@ -106,4 +105,3 @@ class HomeService {
     }
   }
 }
-

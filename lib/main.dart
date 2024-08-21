@@ -6,18 +6,13 @@ import 'package:get/get.dart';
 import 'package:getx_app/app/common/widget/splash.dart';
 import 'package:getx_app/app/data/local/storage_db.dart';
 import 'package:getx_app/app/data/model/auth/login_response.dart';
+import 'package:getx_app/app/modules/login/controllers/login_controller.dart';
 
 import 'app/routes/app_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    GetMaterialApp(
-      title: "Application",
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
