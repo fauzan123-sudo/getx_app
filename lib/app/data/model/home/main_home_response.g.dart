@@ -48,20 +48,17 @@ RiwayatPembayaran _$RiwayatPembayaranFromJson(Map<String, dynamic> json) =>
       biaya: json['biaya'] as String?,
       total: json['total'] as String?,
       tanggal: json['tanggal'] as String?,
-      jam: json['jam'] as String?,
       status: (json['status'] as num?)?.toInt(),
       statusString: json['status_string'] as String?,
       detail: (json['detail'] as List<dynamic>?)
           ?.map((e) => Biaya.fromJson(e as Map<String, dynamic>))
           .toList(),
-    );
+    )..idPembayaran = (json['id'] as num?)?.toInt();
 
 Map<String, dynamic> _$RiwayatPembayaranToJson(RiwayatPembayaran instance) =>
     <String, dynamic>{
-      'kode_pembayaran': instance.kodePembayaran,
-      'biaya': instance.biaya,
+      'id': instance.idPembayaran,
       'total': instance.total,
-      'tanggal': instance.tanggal,
       'jam': instance.jam,
       'status': instance.status,
       'status_string': instance.statusString,

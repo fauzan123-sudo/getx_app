@@ -13,6 +13,7 @@ import 'app/routes/app_pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Get.put(LoginController());
+  Get.put(StorageDB());
   runApp(const MyApp());
 }
 
