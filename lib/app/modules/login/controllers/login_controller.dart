@@ -72,18 +72,26 @@ class LoginController extends GetxController {
     Get.offAllNamed(Routes.BOTTOM_NAVIGATION);
   }
 
-  void userLoginCheck() async {
-    isLoading.value = true;
-    final dataUserLogin = await db.readLoginResponse();
-    isLoading.value = false;
-    if (dataUserLogin != null) {
-      final namaWali = dataUserLogin.data?.namaWali;
-      final firstArray = dataUserLogin.data?.siswaWali?.first;
-      debugPrint('array pertama $firstArray');
-      Get.dialog(LeonDialog(title: 'data tersimpan', content: '$namaWali'));
+  Future<void> userLoginCheck() async {
+    try {
+      isLoading.value = true;
+      final dataUserLogin = await db.readLoginResponse();
+      isLoading.value = false;
+
+      if (dataUserLogin != null) {
+        final namaWali = dataUserLogin.data?.namaWali;
+        final firstArray = dataUserLogin.data?.siswaWali?.first;
+        debugPrint('array pertama $firstArray');
+        Get.dialog(LeonDialog(title: 'data tersimpan', content: '$namaWali'));
+      }
+      // else {
+      //   Get.dialog(const LeonDialog(title: 'data kosong', content: "kosong"));
+      // }
+    } catch (e) {
+      isLoading.value = false;
+      debugPrint('Error during user login check: $e');
+      Get.dialog(const LeonDialog(
+          title: 'Error', content: 'An error occurred during login check.'));
     }
-    // else {
-    //   Get.dialog(const LeonDialog(title: 'data kosong', content: "kosong"));
-    // }
   }
 }

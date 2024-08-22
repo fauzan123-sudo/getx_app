@@ -36,9 +36,9 @@ class Data {
   @JsonKey(name: "sisa_tagihan")
   String? sisaTagihan;
   @JsonKey(name: "sudah_dibayar")
-  int? sudahDibayar;
+  String? sudahDibayar;  // Ubah dari int? ke String? sesuai dengan JSON
   @JsonKey(name: "total_tagihan")
-  int? totalTagihan;
+  String? totalTagihan;  // Ubah dari int? ke String? sesuai dengan JSON
   @JsonKey(name: "riwayat_pembayaran")
   List<RiwayatPembayaran>? riwayatPembayaran;
 
@@ -63,8 +63,6 @@ class Data {
 
 @JsonSerializable()
 class RiwayatPembayaran {
-  @JsonKey(name: "id_pembayaran")
-  int? idPembayaran;
   @JsonKey(name: "kode_pembayaran")
   String? kodePembayaran;
   @JsonKey(name: "biaya")
@@ -73,6 +71,8 @@ class RiwayatPembayaran {
   String? total;
   @JsonKey(name: "tanggal")
   String? tanggal;
+  @JsonKey(name: "jam")
+  String? jam;  // Tambahkan field jam
   @JsonKey(name: "status")
   int? status;
   @JsonKey(name: "status_string")
@@ -81,11 +81,11 @@ class RiwayatPembayaran {
   List<Biaya>? detail;
 
   RiwayatPembayaran({
-    required this.idPembayaran,
     this.kodePembayaran,
     this.biaya,
     this.total,
     this.tanggal,
+    this.jam,  // Initialize field jam
     this.status,
     this.statusString,
     this.detail,
@@ -98,7 +98,7 @@ class RiwayatPembayaran {
 
   @override
   String toString() {
-    return 'RiwayatPembayaran(kodePembayaran: $kodePembayaran,id_pembayaran: $idPembayaran, biaya: $biaya, total: $total, tanggal: $tanggal, status: $status, statusString: $statusString, detail: $detail)';
+    return 'RiwayatPembayaran(kodePembayaran: $kodePembayaran, biaya: $biaya, total: $total, tanggal: $tanggal, jam: $jam, status: $status, statusString: $statusString, detail: $detail)';
   }
 }
 
@@ -108,16 +108,25 @@ class Biaya {
   int? id;
   @JsonKey(name: "kode_pembayaran")
   String? kodePembayaran;
+  @JsonKey(name: "item")
+  String? item;  // Tambahkan field item
   @JsonKey(name: "nominal")
   String? nominal;
   @JsonKey(name: "biaya")
   String? biaya;
+  @JsonKey(name: "periode")
+  String? periode;  // Tambahkan field periode
+  @JsonKey(name: "tanggal")
+  String? tanggal;
 
   Biaya({
     this.id,
     this.kodePembayaran,
+    this.item,  // Initialize field item
     this.nominal,
     this.biaya,
+    this.periode,  // Initialize field periode
+    this.tanggal,
   });
 
   factory Biaya.fromJson(Map<String, dynamic> json) => _$BiayaFromJson(json);
@@ -126,6 +135,6 @@ class Biaya {
 
   @override
   String toString() {
-    return 'Biaya(id: $id, kodePembayaran: $kodePembayaran, nominal: $nominal, biaya: $biaya)';
+    return 'Biaya(id: $id, kodePembayaran: $kodePembayaran, item: $item, nominal: $nominal, biaya: $biaya, periode: $periode, tanggal: $tanggal)';
   }
 }

@@ -28,9 +28,6 @@ class BottomNavigationBinding extends Bindings {
     Get.lazyPut<ProfileController>(
       () => ProfileController(),
     );
-    // Get.lazyPut<LoginController>(
-    //   () => LoginController(),
-    // );
   }
 }
 
