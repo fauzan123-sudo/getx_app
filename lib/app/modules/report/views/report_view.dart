@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../controllers/report_controller.dart';
 
 class ReportView extends GetView<ReportController> {
-  const ReportView({Key? key}) : super(key: key);
+  const ReportView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

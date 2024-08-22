@@ -26,8 +26,8 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
       namaInstansi: json['nama_instansi'] as String?,
       alamat: json['alamat'] as String?,
       sisaTagihan: json['sisa_tagihan'] as String?,
-      sudahDibayar: json['sudah_dibayar'] as int?,
-      totalTagihan: json['total_tagihan'] as int?,
+      sudahDibayar: json['sudah_dibayar'] as String?,
+      totalTagihan: json['total_tagihan'] as String?,
       riwayatPembayaran: (json['riwayat_pembayaran'] as List<dynamic>?)
           ?.map((e) => RiwayatPembayaran.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -44,21 +44,20 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
 
 RiwayatPembayaran _$RiwayatPembayaranFromJson(Map<String, dynamic> json) =>
     RiwayatPembayaran(
-      idPembayaran: json['id_pembayaran'] as int?,
       kodePembayaran: json['kode_pembayaran'] as String?,
       biaya: json['biaya'] as String?,
       total: json['total'] as String?,
       tanggal: json['tanggal'] as String?,
-      status: json['status'] as int?,
+      status: (json['status'] as num?)?.toInt(),
       statusString: json['status_string'] as String?,
       detail: (json['detail'] as List<dynamic>?)
           ?.map((e) => Biaya.fromJson(e as Map<String, dynamic>))
           .toList(),
-    );
+    )..idPembayaran = (json['id'] as num?)?.toInt();
 
 Map<String, dynamic> _$RiwayatPembayaranToJson(RiwayatPembayaran instance) =>
     <String, dynamic>{
-      'id_pembayaran': instance.idPembayaran,
+      'id': instance.idPembayaran,
       'kode_pembayaran': instance.kodePembayaran,
       'biaya': instance.biaya,
       'total': instance.total,
@@ -69,7 +68,7 @@ Map<String, dynamic> _$RiwayatPembayaranToJson(RiwayatPembayaran instance) =>
     };
 
 Biaya _$BiayaFromJson(Map<String, dynamic> json) => Biaya(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       kodePembayaran: json['kode_pembayaran'] as String?,
       nominal: json['nominal'] as String?,
       biaya: json['biaya'] as String?,

@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:getx_app/app/data/local/storage_db.dart';
 import 'package:getx_app/app/data/model/auth/login_response.dart';
-import 'package:getx_app/app/data/network/home.dart';
 import 'package:getx_app/app/utils/handle_logout.dart';
 
 

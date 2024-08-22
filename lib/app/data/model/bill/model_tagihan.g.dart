@@ -40,7 +40,7 @@ ListTagihan _$ListTagihanFromJson(Map<String, dynamic> json) => ListTagihan(
       nominal: json['nominal'] as String?,
       namaBiaya: json['nama_biaya'] as String?,
       tanggalJatuhTempo: json['tanggal_jatuh_tempo'] as String?,
-      nominalReal: json['nominal_real'] as int?,
+      nominalReal: (json['nominal_real'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ListTagihanToJson(ListTagihan instance) =>

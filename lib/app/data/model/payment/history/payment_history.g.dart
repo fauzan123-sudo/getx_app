@@ -29,7 +29,7 @@ Datum _$DatumFromJson(Map<String, dynamic> json) => Datum(
       biaya: json['biaya'] as String?,
       total: json['total'] as String?,
       tanggal: json['tanggal'] as String?,
-      status: json['status'] as int?,
+      status: (json['status'] as num?)?.toInt(),
       statusString: json['status_string'] as String?,
       detail: (json['detail'] as List<dynamic>?)
           ?.map((e) => Detail.fromJson(e as Map<String, dynamic>))
@@ -47,7 +47,7 @@ Map<String, dynamic> _$DatumToJson(Datum instance) => <String, dynamic>{
     };
 
 Detail _$DetailFromJson(Map<String, dynamic> json) => Detail(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       kodePembayaran: json['kode_pembayaran'] as String?,
       item: json['item'],
       nominal: json['nominal'] as String?,

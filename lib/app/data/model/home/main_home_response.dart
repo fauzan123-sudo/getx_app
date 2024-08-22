@@ -36,9 +36,9 @@ class Data {
   @JsonKey(name: "sisa_tagihan")
   String? sisaTagihan;
   @JsonKey(name: "sudah_dibayar")
-  int? sudahDibayar;
+  String? sudahDibayar;
   @JsonKey(name: "total_tagihan")
-  int? totalTagihan;
+  String? totalTagihan;
   @JsonKey(name: "riwayat_pembayaran")
   List<RiwayatPembayaran>? riwayatPembayaran;
 
@@ -63,7 +63,7 @@ class Data {
 
 @JsonSerializable()
 class RiwayatPembayaran {
-  @JsonKey(name: "id_pembayaran")
+  @JsonKey(name: "id")
   int? idPembayaran;
   @JsonKey(name: "kode_pembayaran")
   String? kodePembayaran;
@@ -81,7 +81,7 @@ class RiwayatPembayaran {
   List<Biaya>? detail;
 
   RiwayatPembayaran({
-    required this.idPembayaran,
+    // required this.idPembayaran,
     this.kodePembayaran,
     this.biaya,
     this.total,
@@ -98,7 +98,7 @@ class RiwayatPembayaran {
 
   @override
   String toString() {
-    return 'RiwayatPembayaran(kodePembayaran: $kodePembayaran,id_pembayaran: $idPembayaran, biaya: $biaya, total: $total, tanggal: $tanggal, status: $status, statusString: $statusString, detail: $detail)';
+    return 'RiwayatPembayaran(kodePembayaran: $kodePembayaran, biaya: $biaya, total: $total, tanggal: $tanggal, status: $status, statusString: $statusString, detail: $detail)';
   }
 }
 
