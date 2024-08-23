@@ -9,7 +9,9 @@ import 'package:getx_app/app/data/model/bill/model_tagihan.dart';
 import 'package:getx_app/app/data/model/payment/payment_model.dart';
 import 'package:getx_app/app/data/network/bill_services.dart';
 import 'package:getx_app/app/data/network/payment_service.dart';
+import 'package:getx_app/app/routes/app_pages.dart';
 import 'package:getx_app/app/utils/user_data.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:swipe_refresh/swipe_refresh.dart';
 
 class PaymentController extends GetxController with userDataMixin {
@@ -26,7 +28,8 @@ class PaymentController extends GetxController with userDataMixin {
 
   @override
   void onInit() {
-    _refreshStateController.close();
+    // _refreshStateController.close();
+    loadSiswaWali();
     loadDataTagihan('', '', '');
     super.onInit();
   }
@@ -42,6 +45,7 @@ class PaymentController extends GetxController with userDataMixin {
     final siswa = await checkStudent();
     if (siswa != null) {
       nisn.value = siswa.nisn ?? '';
+      selectedItems.clear();
       listTagihan(costType, nisn.value, startDate, endDate);
     } else {
       DialogHelper.showErrorDialog(
@@ -54,7 +58,8 @@ class PaymentController extends GetxController with userDataMixin {
     try {
       _refreshStateController.add(SwipeRefreshState.loading);
       isLoading(true);
-
+      selectedItems.clear();
+      debugPrint('nisne : $costType');
       var result = await api.tagihanApi(
           '', costType ?? '', startDate ?? '', endDate ?? '', nisn ?? '');
       result.fold((failure) {
@@ -120,9 +125,9 @@ class PaymentController extends GetxController with userDataMixin {
   void updateSelectedSiswa(SiswaWali siswa) async {
     try {
       selectedItems.clear();
-      await storageDB.value.saveStudentPicked(siswa);
+      await storageDB.saveStudentPicked(siswa);
       Get.snackbar('Info', 'Siswa berhasil dipilih dan disimpan');
-      listTagihan(siswa.nisn!, '', '', '');
+      listTagihan('', siswa.nisn!, '', '');
     } catch (e) {
       debugPrint('gagal menganti siswa $e');
     }
@@ -145,7 +150,7 @@ class PaymentController extends GetxController with userDataMixin {
         showConfirmationDialog(context);
       }, (data) {
         paymentDetails.value = data.data?.dataPembayaran ?? PaymentDetails();
-        storageDB.value.saveVa(paymentDetails.value);
+        storageDB.saveVa(paymentDetails.value);
         Get.toNamed(Routes.WAITING_PAGE);
 
         debugPrint('datanya : $data');
@@ -157,5 +162,25 @@ class PaymentController extends GetxController with userDataMixin {
     }
 
     debugPrint('NISN : $nisn dan id Tagihanya : $idTagihan');
+  }
+
+  Future<void> showConfirmationDialog(BuildContext context) async {
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.warning,
+      title: "Anda sudah mempunyai tagihan sebelumnya!",
+      text: "Lihat tagihan",
+      confirmBtnText: 'Ya',
+      cancelBtnText: 'Tidak',
+      confirmBtnColor: Colors.red,
+      showCancelBtn: true,
+      onConfirmBtnTap: () {
+        Get.back();
+        Get.toNamed(Routes.WAITING_PAGE);
+      },
+      onCancelBtnTap: () {
+        Get.back();
+      },
+    );
   }
 }

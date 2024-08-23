@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/app/common/constan/icon.dart';
 import 'package:getx_app/app/common/constan/integer.dart';
@@ -7,8 +6,7 @@ import 'package:getx_app/app/common/widget/svg_reusable.dart';
 import 'package:getx_app/app/common/widget/text-style-provider.dart';
 import 'package:quickalert/quickalert.dart';
 
-
-import '../../modules/home/controllers/home_controller.dart';
+// import '../../modules/home/controllers/home_controller.dart';
 
 class LeonDialog extends StatelessWidget {
   final String title;
@@ -38,7 +36,7 @@ class LeonDialogListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeController controller = Get.find();
+    // final HomeController controller = Get.find();
     return AlertDialog(
       backgroundColor: Colors.transparent,
       // title: const Text('title'),
@@ -72,7 +70,8 @@ class LeonDialogListView extends StatelessWidget {
                       );
                     },
                     itemBuilder: (BuildContext context, int index) {
-                        },
+
+                    },
                   )),
             ],
           ),
@@ -93,13 +92,13 @@ class DialogHelper {
     );
   }
 
-  static void showLoadingDialog(BuildContext context) {
-    QuickAlert.show(
-      context: context,
-      type: QuickAlertType.loading,
-      title: 'loading',
-    );
-  }
+  // static showLoadingDialog(BuildContext context) {
+  //   QuickAlert.show(
+  //     context: context,
+  //     type: QuickAlertType.loading,
+  //     title: 'loading',
+  //   );
+  // }
 
   static void showErrorDialog(BuildContext context, String title, String text) {
     QuickAlert.show(
@@ -120,8 +119,7 @@ class DialogHelper {
     );
   }
 
-  static void showLogoutDialog(
-      BuildContext context) {
+  static void showLogoutDialog(BuildContext context) {
     QuickAlert.show(
       context: context,
       type: QuickAlertType.confirm,
@@ -131,4 +129,12 @@ class DialogHelper {
       cancelBtnText: 'Tidak',
     );
   }
+}
+
+showLoadingDialog(BuildContext context) {
+  QuickAlert.show(
+    context: context,
+    type: QuickAlertType.loading,
+    title: 'loading',
+  );
 }

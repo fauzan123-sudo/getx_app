@@ -47,7 +47,7 @@ class BillController extends GetxController with userDataMixin, PaymentFilter {
 
   void updateSelectedSiswa(SiswaWali siswa) async {
     try {
-      await storageDB.value.saveStudentPicked(siswa);
+      await storageDB.saveStudentPicked(siswa);
       Get.snackbar('Info', 'Siswa berhasil dipilih dan disimpan');
       listTagihan(siswa.nisn!, '', '', '');
     } catch (e) {

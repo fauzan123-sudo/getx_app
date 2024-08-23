@@ -105,41 +105,30 @@ class PaymentView extends StatelessWidget {
   }
 
   Widget _buildBody(PaymentController controller) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(AppIcon.iBackground),
-          fit: BoxFit.fill,
-          alignment: Alignment.topCenter,
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Obx(() {
-          if (controller.isLoading.value) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (controller.dataTagihan.isEmpty) {
-            return const Center(child: Text('Data kosong'));
-          } else {
-            return ListView.separated(
-              itemCount: controller.dataTagihan.length,
-              shrinkWrap: true,
-              physics: const ScrollPhysics(),
-              separatorBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: 4.0,
-                );
-              },
-              itemBuilder: (BuildContext context, int index) {
-                var item = controller.dataTagihan[index];
-                return itemTagihan(item, controller);
-              },
-            );
-          }
-        }),
-      ),
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Obx(() {
+        if (controller.isLoading.value) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (controller.dataTagihan.isEmpty) {
+          return const Center(child: Text('Data kosong'));
+        } else {
+          return ListView.separated(
+            itemCount: controller.dataTagihan.length,
+            shrinkWrap: true,
+            physics: const ScrollPhysics(),
+            separatorBuilder: (BuildContext context, int index) {
+              return Container(
+                height: 4.0,
+              );
+            },
+            itemBuilder: (BuildContext context, int index) {
+              var item = controller.dataTagihan[index];
+              return itemTagihan(item, controller);
+            },
+          );
+        }
+      }),
     );
   }
 
@@ -215,7 +204,7 @@ class PaymentView extends StatelessWidget {
                 .map((item) => item.tagihanId)
                 .join(',');
             debugPrint('Selected Tagihan IDs: $selectItemId');
-            controller.pay('${controller.nisn}', selectItemId, context);
+            controller.pay('${controller.nisn}', selectItemId, Get.context!);
             // Get.toNamed(Routes.WAITING_PAGE);
           },
           buttonText: 'BAYAR',

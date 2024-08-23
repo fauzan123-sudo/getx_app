@@ -8,12 +8,12 @@ import 'package:getx_app/app/common/constan/strings.dart';
 import 'package:getx_app/app/common/widget/appbar_reusable.dart';
 import 'package:getx_app/app/common/widget/background_image.dart';
 import 'package:getx_app/app/common/widget/bottom_sheet.dart';
+import 'package:getx_app/app/common/widget/dialog.dart';
 import 'package:getx_app/app/common/widget/handle_empty.dart';
 import 'package:getx_app/app/common/widget/sizebox.dart';
 import 'package:getx_app/app/common/widget/svg_reusable.dart';
 import 'package:getx_app/app/common/widget/text-style-provider.dart';
 import 'package:getx_app/app/modules/home/widget/cardview.dart';
-import 'package:getx_app/app/routes/app_pages.dart';
 import 'package:swipe_refresh/swipe_refresh.dart';
 
 import '../controllers/home_controller.dart';

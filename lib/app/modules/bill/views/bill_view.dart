@@ -349,8 +349,6 @@ class _BillViewState extends State<BillView> {
                                 fbKey.currentState!.reset();
                                 controller.setSelectedData(-1);
                                 controller.setSelectedCostType(-1);
-                                // controller.setSelectedNominalCost(-1);
-                                // controller.setSelectedSchoolYear(-1);
                               },
                               child: Card(
                                 shape: RoundedRectangleBorder(
@@ -440,49 +438,40 @@ class _BillViewState extends State<BillView> {
   }
 
   Widget _buildBody(BillController controller) {
-    return Expanded(
-        child: SwipeRefresh.material(
-      onRefresh: () async {
-        await controller.loadDataTagihan('', '', '');
-      },
-      stateStream: controller.refreshStateStream,
-      children: [
-        Obx(() {
-          if (controller.isLoading.value) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (controller.dataTagihan.isEmpty) {
-            return buildHandleEmptyPayment();
-          } else {
-            return ListView.separated(
-              itemCount: controller.dataTagihan.length,
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                var item = controller.dataTagihan[index];
-                return InkWell(
-                  child: LeonCardBill(
-                    date: item.periode!,
-                    tagihanList: item.list!,
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const SizedBox(
-                  height: 10,
-                );
-              },
+    return Obx(() {
+      if (controller.isLoading.value) {
+        return const Center(child: CircularProgressIndicator());
+      } else if (controller.dataTagihan.isEmpty) {
+        return buildHandleEmptyPayment();
+      } else {
+        return ListView.separated(
+          itemCount: controller.dataTagihan.length,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (BuildContext context, int index) {
+            var item = controller.dataTagihan[index];
+            return InkWell(
+              child: LeonCardBill(
+                date: item.periode!,
+                tagihanList: item.list!,
+              ),
             );
-          }
-        }),
-      ],
-    ));
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return const SizedBox(
+              height: 10,
+            );
+          },
+        );
+      }
+    });
   }
 
   Widget paddingForCalendar(BuildContext context, String s) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: Get.width,
         decoration: const BoxDecoration(
             border: Border(
               left: BorderSide(

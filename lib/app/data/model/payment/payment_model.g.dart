@@ -38,7 +38,7 @@ Map<String, dynamic> _$PaymentDataToJson(PaymentData instance) =>
 PaymentDetails _$PaymentDetailsFromJson(Map<String, dynamic> json) =>
     PaymentDetails(
       noVa: json['no_va'] as String?,
-      amount: (json['amount'] as num?)?.toInt(),
+      amount: json['amount'] as String?,
       expired: json['expired'] as String?,
     );
 

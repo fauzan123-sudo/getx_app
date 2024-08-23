@@ -9,6 +9,7 @@ import 'package:getx_app/app/common/widget/text-style-provider.dart';
 import 'package:getx_app/app/data/model/home/main_home_response.dart';
 import 'package:getx_app/app/data/model/payment/history/payment_history.dart';
 import 'package:getx_app/app/modules/home/controllers/home_controller.dart';
+import 'package:getx_app/app/routes/app_pages.dart';
 
 class LeonBottomSheet extends StatelessWidget {
   const LeonBottomSheet({
@@ -171,7 +172,9 @@ class LeonBottomSheet extends StatelessWidget {
                       LeonButtonBorder(
                         borderColor: AppColors.bgPrimary,
                         buttonColor: AppColors.bgPrimary,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed(Routes.WAITING_PAGE);
+                        },
                         buttonText: 'BAYAR',
                         textStyle: LeonTextStyles.poppins12BoldWhite(),
                       ),

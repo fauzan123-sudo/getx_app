@@ -16,7 +16,7 @@ class LoginController extends GetxController {
       TextEditingController(text: '12345678');
   final authservice = AuthService();
   final db = StorageDB();
-  var isLoading = true.obs;
+  var isLoading = false.obs;
 
   final RxString savedEmail = ''.obs;
   final RxString savedPassword = ''.obs;
@@ -25,7 +25,7 @@ class LoginController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    userLoginCheck();
+    // userLoginCheck();
   }
 
   final _isAuthenticated = true.obs;
@@ -33,7 +33,7 @@ class LoginController extends GetxController {
   bool get isAuthenticated => _isAuthenticated.value;
 
   void setUnauthenticated() {
-    _isAuthenticated.value = false;
+    // _isAuthenticated.value = false;
     Get.offAllNamed(Routes.LOGIN);
   }
 
@@ -90,12 +90,12 @@ class LoginController extends GetxController {
     } catch (e) {
       isLoading.value = false;
       debugPrint('Error during user login check: $e');
-      Get.dialog(const LeonDialog(
-          title: 'Error', content: 'An error occurred during login check.'));
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.dialog(const LeonDialog(
+            title: 'Error', content: 'An error occurred during login check.'));
+      });
     }
   }
 
-  void logout()async{
-    
-  }
+  void logout() async {}
 }

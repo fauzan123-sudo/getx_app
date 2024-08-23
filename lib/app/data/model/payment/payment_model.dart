@@ -56,7 +56,7 @@ class PaymentDetails {
   @JsonKey(name: "no_va")
   String? noVa;
   @JsonKey(name: "amount")
-  int? amount;
+  String? amount;
   @JsonKey(name: "expired")
   String? expired;
 

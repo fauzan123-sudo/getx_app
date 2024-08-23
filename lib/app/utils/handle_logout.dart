@@ -11,7 +11,7 @@ class LogoutService {
       await _storageDB.deleteLoginResponse();
       final data = await _storageDB.readLoginResponse();
       _authController.setUnauthenticated();
-      debugPrint('ata login sekarang $data');
+      debugPrint('Data login sekarang $data');
     } catch (e) {
       debugPrint('Error during logout: $e');
     }

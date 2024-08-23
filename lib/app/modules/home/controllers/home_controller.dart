@@ -48,7 +48,7 @@ class HomeController extends GetxController with userDataMixin {
 
   void updateSelectedSiswa(SiswaWali siswa) async {
     try {
-      await storageDB.value.saveStudentPicked(siswa);
+      await storageDB.saveStudentPicked(siswa);
       Get.snackbar('Info', 'Siswa berhasil dipilih dan disimpan');
       loadDataHome();
       fetchListPembayaran(siswa.nisn!);
