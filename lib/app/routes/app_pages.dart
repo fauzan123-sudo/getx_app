@@ -10,10 +10,18 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/payment/bindings/payment_binding.dart';
 import '../modules/payment/views/payment_view.dart';
+import '../modules/payment_history/bindings/payment_history_binding.dart';
+import '../modules/payment_history/views/payment_history_view.dart';
+import '../modules/payment_to_bank/bindings/payment_to_bank_binding.dart';
+import '../modules/payment_to_bank/views/payment_to_bank_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/report/bindings/report_binding.dart';
 import '../modules/report/views/report_view.dart';
+import '../modules/search_payment/bindings/search_payment_binding.dart';
+import '../modules/search_payment/views/search_payment_view.dart';
+import '../modules/waiting_page/bindings/waiting_page_binding.dart';
+import '../modules/waiting_page/views/waiting_page_view.dart';
 
 part 'app_routes.dart';
 
@@ -57,6 +65,26 @@ class AppPages {
       name: _Paths.BOTTOM_NAVIGATION,
       page: () => const BottomNavigationView(),
       binding: BottomNavigationBinding(),
+    ),
+    GetPage(
+      name: _Paths.WAITING_PAGE,
+      page: () => const WaitingPageView(),
+      binding: WaitingPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMENT_HISTORY,
+      page: () => const PaymentHistoryView(),
+      binding: PaymentHistoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMENT_TO_BANK,
+      page: () => const PaymentToBankView(),
+      binding: PaymentToBankBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH_PAYMENT,
+      page: () => const SearchPaymentView(),
+      binding: SearchPaymentBinding(),
     ),
   ];
 }
