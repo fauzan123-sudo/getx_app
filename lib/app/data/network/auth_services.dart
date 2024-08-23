@@ -7,7 +7,6 @@ import 'package:getx_app/app/data/model/auth/login_response.dart';
 import 'package:getx_app/app/data/provider/error_handle.dart';
 import 'package:getx_app/app/data/provider/handle_dio_error.dart';
 
-
 class AuthService {
   final Dio _dio;
 
@@ -36,6 +35,7 @@ class AuthService {
 
       if (response.statusCode == 200) {
         final data = LoginResponse.fromJson(response.data);
+        debugPrint('$data');
         return Right(data);
       } else {
         debugPrint('Error: ${response.statusMessage}');

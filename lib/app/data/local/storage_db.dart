@@ -100,9 +100,4 @@ class StorageDB {
       return null;
     }
   }
-
-  // Future<void> update(dynamic newData) async {
-  //   final jsonData = json.encode(newData);
-  //   await _storage.write(key: AppString.gUserSaved, value: jsonData);
-  // }
 }

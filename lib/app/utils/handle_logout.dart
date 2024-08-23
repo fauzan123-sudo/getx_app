@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:getx_app/app/data/local/storage_db.dart';
 import 'package:getx_app/app/modules/login/controllers/login_controller.dart';
 
-
 class LogoutService {
   final StorageDB _storageDB = StorageDB();
   final LoginController _authController = Get.find<LoginController>();

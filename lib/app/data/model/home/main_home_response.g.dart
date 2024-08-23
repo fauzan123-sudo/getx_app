@@ -48,6 +48,7 @@ RiwayatPembayaran _$RiwayatPembayaranFromJson(Map<String, dynamic> json) =>
       biaya: json['biaya'] as String?,
       total: json['total'] as String?,
       tanggal: json['tanggal'] as String?,
+      jam: json['jam'] as String?,
       status: (json['status'] as num?)?.toInt(),
       statusString: json['status_string'] as String?,
       detail: (json['detail'] as List<dynamic>?)
@@ -58,7 +59,10 @@ RiwayatPembayaran _$RiwayatPembayaranFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$RiwayatPembayaranToJson(RiwayatPembayaran instance) =>
     <String, dynamic>{
       'id': instance.idPembayaran,
+      'kode_pembayaran': instance.kodePembayaran,
+      'biaya': instance.biaya,
       'total': instance.total,
+      'tanggal': instance.tanggal,
       'jam': instance.jam,
       'status': instance.status,
       'status_string': instance.statusString,

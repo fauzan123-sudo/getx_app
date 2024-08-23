@@ -94,4 +94,8 @@ class LoginController extends GetxController {
           title: 'Error', content: 'An error occurred during login check.'));
     }
   }
+
+  void logout()async{
+    
+  }
 }

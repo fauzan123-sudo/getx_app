@@ -64,7 +64,8 @@ class LeonCardTopShadow extends StatelessWidget {
     required this.shadowColor,
     required this.shadowBlurRadius,
     required this.shadowOffset,
-    required this.child, required this.padding,
+    required this.child,
+    required this.padding,
   });
 
   @override
@@ -176,5 +177,50 @@ class LeonCardLeftPrimary extends StatelessWidget {
                   ),
                 ),
                 child: child)));
+  }
+}
+
+class LeonPaymentCardView extends StatelessWidget {
+  final Widget child;
+  final LinearGradient gradient;
+  final Color solidColor;
+  final bool useGradient;
+  final double borderRadius;
+  final Color strokeColor;
+  const LeonPaymentCardView({
+    super.key,
+    required this.child,
+    this.gradient = AppColors.customGradient,
+    this.solidColor = AppColors.bgPrimary,
+    this.useGradient = true,
+    this.borderRadius = 10,
+    required this.strokeColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 20,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(borderRadius),
+      ),
+      child: Material(
+        borderRadius: BorderRadius.circular(borderRadius),
+        color: Colors.transparent,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(borderRadius),
+            color: useGradient ? null : solidColor,
+            gradient: useGradient ? gradient : null,
+            border: Border.all(
+              width: 0,
+              color: strokeColor,
+            ),
+          ),
+          padding: const EdgeInsets.all(AppInteger.gSpace20),
+          child: child,
+        ),
+      ),
+    );
   }
 }
